@@ -42,7 +42,7 @@ further_reading:
 
 ### Supported .NET Core runtimes
 
-The .NET Tracer supports instrumentation on .NET Core 2.1, 3.1, .NET 5, and .NET 6. 
+The .NET Tracer supports instrumentation on .NET Core 2.1, 3.1, .NET 5, and .NET 6.
 
 For a full list of supported libraries and processor architectures, see [Compatibility Requirements][1].
 
@@ -92,7 +92,7 @@ To install the .NET Tracer machine-wide:
 1. Download the latest [.NET Tracer package][1] that supports your operating system and architecture.
 
 2. Run one of the following commands to install the package and create the .NET tracer log directory `/var/log/datadog/dotnet` with the appropriate permissions:
-   
+
    Debian or Ubuntu
    : `sudo dpkg -i ./datadog-dotnet-apm_<TRACER_VERSION>_amd64.deb && /opt/datadog/createLogPath.sh`
 
@@ -126,7 +126,7 @@ To install the .NET Tracer per-application:
 
 ### Enable the tracer for your service
 
-To enable the .NET Tracer for your service, set the required environment variables and restart the application. 
+To enable the .NET Tracer for your service, set the required environment variables and restart the application.
 
 For information about the different methods for setting environment variables, see [Configuring process environment variables](#configuring-process-environment-variables).
 
@@ -199,7 +199,7 @@ For information about the different methods for setting environment variables, s
    Windows x86      | `<APP_DIRECTORY>\datadog\win-x86\Datadog.Trace.ClrProfiler.Native.dll`
 
 2. For Docker images running on Linux, configure the image to run the `createLogPath.sh` script:
-  
+
    ```
    RUN /<APP_DIRECTORY>/datadog/createLogPath.sh
    ```
@@ -381,15 +381,15 @@ The following configuration variables are available for both automatic and custo
 `DD_TRACE_AGENT_URL`
 : **TracerSettings property**: `Exporter.AgentUri`<br>
 Sets the URL endpoint where traces are sent. Overrides `DD_AGENT_HOST` and `DD_TRACE_AGENT_PORT` if set. <br>
-It can contain a unix path to a socket by prefixing the path by `unix://`<br>
-**Default**: `http://<DD_AGENT_HOST>:<DD_TRACE_AGENT_PORT>` if they are set, `unix:///var/run/datadog/apm.socket` if the file exists or `http://localhost:8126`.
+It can contain a Unix path to a socket by prefixing the path with `unix://`<br>
+**Default**: `http://<DD_AGENT_HOST>:<DD_TRACE_AGENT_PORT>` if they are set, `unix:///var/run/datadog/apm.socket` if the file exists, or `http://localhost:8126`.
 
 `DD_AGENT_HOST`
-: Sets the host where traces are sent (the host running the Agent). Can be a hostname or an IP address. Prefers using `DD_TRACE_AGENT_URL` that has precedence over this parameter. <br>
+: Sets the host where the Agent is listening for connections. Can be a hostname or an IP address. Prefer using `DD_TRACE_AGENT_URL` that has precedence over this parameter. <br>
 **Default**: `localhost`
 
 `DD_TRACE_AGENT_PORT`
-: Sets the port where traces are sent (the port where the Agent is listening for connections). Prefers using `DD_TRACE_AGENT_URL` that has precedence over this parameter. <br>
+: Sets the TCP port where the Agent is listening for connections. Prefer using `DD_TRACE_AGENT_URL` that has precedence over this parameter. <br>
 **Default**: `8126`
 
 `DD_LOGS_INJECTION`
@@ -483,7 +483,7 @@ The following configuration variables are for features that are available for us
 #### Deprecated settings
 
 `DD_TRACE_LOG_PATH`
-: Sets the path for the automatic instrumentation log file and determines the directory of all other .NET Tracer log files. Ignored if `DD_TRACE_LOG_DIRECTORY` is set. 
+: Sets the path for the automatic instrumentation log file and determines the directory of all other .NET Tracer log files. Ignored if `DD_TRACE_LOG_DIRECTORY` is set.
 
 `DD_TRACE_ROUTE_TEMPLATE_RESOURCE_NAMES_ENABLED`
 : Enables improved resource names for web spans when set to `true`. Uses route template information where available, adds an additional span for ASP.NET Core integrations, and enables additional tags. Added in version 1.26.0. Enabled by default in 2.0.0<br>
