@@ -128,7 +128,7 @@ For information about the different methods for setting environment variables, s
    ```
 
    <div class="alert alert-warning">
-     <strong>Note:</strong> Use <code>stop</code> and <code>start</code> commands. A reset or restart does not always work.
+     <strong>Note:</strong> Always use the commands above to completely stop and restart IIS to enable the tracer. Avoid using the IIS Manager GUI application or <code>iisreset.exe</code>.
    </div>
 
 
@@ -171,7 +171,7 @@ For information about the different methods for setting environment variables, s
 
 ### Configure the Datadog Agent for APM
 
-[Install and configure the Datadog Agent][2] to receive traces from your instrumented application. By default the Datadog Agent is enabled in your `datadog.yaml` file under `apm_config` with `enabled: true` and listens for trace data on `http://localhost:8126`.
+[Install and configure the Datadog Agent][2] to receive traces from your instrumented application. By default, the Datadog Agent is enabled in your `datadog.yaml` file under `apm_config` with `enabled: true` and listens for trace traffic at `localhost:8126`.
 
 For containerized, serverless, and cloud environments:
 
@@ -357,7 +357,7 @@ Enables or disables automatic injection of correlation identifiers into applicat
 
 `DD_TRACE_SAMPLE_RATE`
 : **TracerSettings property**: `GlobalSamplingRate` <br>
-Enables [Tracing without Limits][5].
+Enables ingestion rate control.
 
 `DD_MAX_TRACES_PER_SECOND`
 : **TracerSettings property**: `MaxTracesSubmittedPerSecond` <br>
@@ -424,11 +424,11 @@ The following table lists configuration variables that are available **only** wh
 
 `DD_DISABLED_INTEGRATIONS`
 : **TracerSettings property**: `DisabledIntegrationNames` <br>
-Sets a list of integrations to disable. All other integrations remain enabled. If not set, all integrations are enabled. Supports multiple values separated with semicolons. Valid values are the integration names listed in the [Integrations][6] section.
+Sets a list of integrations to disable. All other integrations remain enabled. If not set, all integrations are enabled. Supports multiple values separated with semicolons. Valid values are the integration names listed in the [Integrations][5] section.
 
 `DD_TRACE_<INTEGRATION_NAME>_ENABLED`
 : **TracerSettings property**: `Integrations[<INTEGRATION_NAME>].Enabled` <br>
-Enables or disables a specific integration. Valid values are: `true` or `false`. Integration names are listed in the [Integrations][6] section.<br>
+Enables or disables a specific integration. Valid values are: `true` or `false`. Integration names are listed in the [Integrations][5] section.<br>
 **Default**: `true`
 
 #### Experimental features
@@ -479,7 +479,7 @@ To use custom instrumentation in your .NET application:
 
 {{< /tabs >}}
 
-For more information on adding spans and tags for custom instrumentation, see the [.NET Custom Instrumentation documentation][7].
+For more information on adding spans and tags for custom instrumentation, see the [.NET Custom Instrumentation documentation][6].
 
 ## Configuring process environment variables
 
@@ -536,6 +536,5 @@ dotnet.exe example.dll
 [2]: /agent/
 [3]: https://app.datadoghq.com/apm/traces
 [4]: /getting_started/tagging/unified_service_tagging/
-[5]: /tracing/trace_ingestion/
-[6]: /tracing/setup_overview/compatibility_requirements/dotnet-framework/#integrations
-[7]: /tracing/setup_overview/custom_instrumentation/dotnet/
+[5]: /tracing/setup_overview/compatibility_requirements/dotnet-framework/#integrations
+[6]: /tracing/setup_overview/custom_instrumentation/dotnet/
