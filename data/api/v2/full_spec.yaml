@@ -1572,6 +1572,9 @@ components:
           type: array
       type: object
     HTTPLogItem:
+      additionalProperties:
+        description: Additional log attributes.
+        type: string
       description: Logs that are sent over HTTP.
       properties:
         ddsource:
@@ -1613,7 +1616,7 @@ components:
           example: payment
           type: string
       required:
-      - name
+      - message
       type: object
     HourlyUsageType:
       description: Usage type that is being measured.
